@@ -1,4 +1,4 @@
-package com.example.appointmentscheduler.ui.update_appointment.components
+package com.example.appointmentscheduler.ui.add_appointment.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -7,23 +7,33 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.example.appointmentscheduler.core.Constants.Companion.UPDATE
+import com.example.appointmentscheduler.core.Constants
 import com.example.appointmentscheduler.data.model.Appointment
 
 @Composable
-fun UpdateAppointmentContent(
-    appt: Appointment,
-    updateAppt: (appt:Appointment) -> Unit,
-    updateDate: (date:String) -> Unit,
-    updateTime: (time:String) -> Unit,
-    updateLoc: (loc:String) -> Unit,
-    updateDesc: (desc:String) -> Unit,
+fun AddAppointmentContent(
+    addAppt: (appt: Appointment) -> Unit,
     navigateBack: () -> Unit
 ) {
+    var newDate by remember {
+        mutableStateOf("")
+    }
+
+    var newTime by remember {
+        mutableStateOf("")
+    }
+
+    var newLoc by remember {
+        mutableStateOf("")
+    }
+
+    var newDesc by remember {
+        mutableStateOf("")
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -33,41 +43,41 @@ fun UpdateAppointmentContent(
     ) {
         TextField(
             modifier = Modifier.background(Color.White),
-            value = appt.date,
+            value = newDate,
             onValueChange = {
-                    date -> updateDate(date)
+                    it -> newDate = it
             }
         )
         TextField(
             modifier = Modifier.background(Color.White),
-            value = appt.time,
+            value = newTime,
             onValueChange = {
-                    time -> updateTime(time)
+                    it -> newTime = it
             }
         )
         TextField(
             modifier = Modifier.background(Color.White),
-            value = appt.location,
+            value = newLoc,
             onValueChange = {
-                    loc -> updateLoc(loc)
+                    it -> newLoc = it
             }
         )
         TextField(
             modifier = Modifier
                 .background(Color.White)
                 .weight(1.0f),
-            value = appt.description,
+            value = newDesc,
             onValueChange = {
-                description -> updateDesc(description)
+                    it -> newDesc = it
             }
         )
 
         Button(onClick = {
-            updateAppt(appt)
+            addAppt(Appointment(date = newDate, time =  newTime, location = newLoc, description = newDesc))
             navigateBack()
         }) {
             Text(
-               text = UPDATE
+                text = Constants.ADD
             )
         }
     }

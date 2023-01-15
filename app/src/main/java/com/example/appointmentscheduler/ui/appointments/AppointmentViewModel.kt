@@ -41,6 +41,12 @@ class AppointmentViewModel(application: AppointmentApplication): ViewModel() {
         }
     }
 
+    fun addAppointment(appt: Appointment) {
+        viewModelScope.launch(Dispatchers.IO) {
+            apptRepo.addAppointmentIntoRoom(appt)
+        }
+    }
+
     fun updateDate(date:String) {
         appt = appt?.copy(date = date)
     }

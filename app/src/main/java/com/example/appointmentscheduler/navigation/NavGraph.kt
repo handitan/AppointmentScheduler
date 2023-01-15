@@ -8,6 +8,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.appointmentscheduler.navigation.Screen.*
+import com.example.appointmentscheduler.ui.add_appointment.AddAppointmentScreen
 import com.example.appointmentscheduler.ui.appointments.AppointmentScreen
 import com.example.appointmentscheduler.ui.appointments.AppointmentViewModel
 import com.example.appointmentscheduler.ui.update_appointment.UpdateAppointmentScreen
@@ -24,8 +25,11 @@ fun NavGraph(
         composable(route = AppointmentScreen.route) {
             AppointmentScreen(
                 apptViewModel = apptViewModel,
+                navigateToAddBookScreen = {
+                    navController.navigate(AddAppointmentScreen.route)
+                },
                 navigateToUpdateBookScreen = { apptId ->
-                navController.navigate(UpdateAppointmentScreen.route + "/$apptId")
+                    navController.navigate(UpdateAppointmentScreen.route + "/$apptId")
             })
         }
         composable(route = UpdateAppointmentScreen.route + "/{apptId}"
@@ -38,6 +42,15 @@ fun NavGraph(
             UpdateAppointmentScreen(
                 apptViewModel = apptViewModel,
                 apptId = apptId,
+                navigateBack = {
+                    navController.popBackStack()
+                }
+            )
+        }
+        composable(route = AddAppointmentScreen.route
+            ) { it ->
+            AddAppointmentScreen(
+                apptViewModel = apptViewModel,
                 navigateBack = {
                     navController.popBackStack()
                 }

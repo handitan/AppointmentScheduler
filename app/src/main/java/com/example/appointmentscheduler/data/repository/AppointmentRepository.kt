@@ -10,5 +10,5 @@ class AppointmentRepository(
     fun getAppointmentFromRoom(id:Int) = appointmentDao.getAppointment(id)
     fun updateAppointmentFromRoom(appt:Appointment) = appointmentDao.updateAppointment(appt)
     fun deleteAppointmentFromRoom(appt: Appointment) = appointmentDao.deleteAppointment(appt)
-    //TODO HANDI
+    fun addAppointmentIntoRoom(appt:Appointment) = appointmentDao.addAppointment(appt)
 }

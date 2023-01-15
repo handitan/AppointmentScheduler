@@ -7,6 +7,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.appointmentscheduler.data.model.Appointment
 
@@ -30,21 +31,14 @@ fun AppointmentCard(
             //verticalAlignment = Alignment.CenterVertically,
         ) {
 
-            //TODO HANDI overflow
-            /*
-            Text(
-                    text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis
-                )
-             */
             Column {
                 //Column {
                 Text(text = "${appt.date} ${appt.time}")
                 Text(text = "${appt.location}")
                 Text(
                     text = "${appt.description}",
-                    maxLines = 2
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis
                 )
                 //}
                 //Spacer(modifier = Modifier.weight(1.0F,true))
