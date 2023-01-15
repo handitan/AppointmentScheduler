@@ -53,7 +53,6 @@ fun AppointmentCard(
                     EditApptIcon(
                         editAppt = updateAppt
                     )
-                    Spacer(modifier = Modifier.weight(0.1F))
                     DeleteApptIcon(
                         deleteAppt = deleteAppt
                     )

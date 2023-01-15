@@ -20,7 +20,7 @@ fun UpdateAppointmentScreen(
     Scaffold(
         content = { paddingValues ->  
             UpdateAppointmentContent(
-                appt = apptViewModel.tempAppt,
+                appt = apptViewModel.appt,
                 updateAppt = { appt ->
                     apptViewModel.updateAppointment(appt)
                 }, updateDesc = { desc ->

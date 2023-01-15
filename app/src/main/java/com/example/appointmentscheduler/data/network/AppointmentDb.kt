@@ -27,9 +27,11 @@ abstract class AppointmentDb: RoomDatabase() {
                     apptDao.deleteAllAppointment()
 
                     // Add sample appts.
-                    var apptObj = Appointment(date="01/02/2023",time="09:00", location = "Chicago", description = "Description111Description111Description111Description111Description111Description111Description111Description111Description111Description111Description111Description111Description111Description111Description111Description111Description111Description111Description111")
+                    var apptObj = Appointment(date="01/02/2023",time="09:00", location = "Chicago", description = "Description111Description111Description111Description111Description111Description111Description111Description111Description111Description111Descriptio")
                     apptDao.addAppointment(apptObj)
                     apptObj = Appointment(date="02/20/2023",time="08:00",location = "San Diego", description = "Description222Description222Description222Description222Description222Description222Description222Description222Description222Description222Description222")
+                    apptDao.addAppointment(apptObj)
+                    apptObj = Appointment(date="03/30/2023",time="07:00",location = "Park City", description = "Park City 123")
                     apptDao.addAppointment(apptObj)
                 }
             }

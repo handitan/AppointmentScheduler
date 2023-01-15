@@ -30,8 +30,8 @@ fun UpdateAppointmentContent(
         TextField(
             modifier = Modifier.background(Color.White),
             value = appt.description,
-            onValueChange = { description ->
-                updateDesc(description)
+            onValueChange = {
+                description -> updateDesc(description)
             }
         )
 

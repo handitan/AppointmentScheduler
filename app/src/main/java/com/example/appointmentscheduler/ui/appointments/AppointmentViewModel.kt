@@ -1,5 +1,8 @@
 package com.example.appointmentscheduler.ui.appointments
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -15,15 +18,14 @@ class AppointmentViewModel(application: AppointmentApplication): ViewModel() {
         application.apptRepo
     }
 
-    //TODO HANDI
-    var tempAppt:Appointment = Appointment(date = "", time = "", location = "", description = "")
+    var appt:Appointment by mutableStateOf(Appointment(date = "", time = "", location = "", description = ""))
         private set
 
     val apptList = apptRepo.getAppointmentsFromRoom()
 
     fun getAppointment(id:Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            tempAppt = apptRepo.getAppointmentFromRoom(id)
+            appt = apptRepo.getAppointmentFromRoom(id)
         }
     }
 
@@ -41,7 +43,7 @@ class AppointmentViewModel(application: AppointmentApplication): ViewModel() {
 
     //TODO HANDI
     fun updateDescription(description:String) {
-        tempAppt = tempAppt?.copy(description = description)
+        appt = appt?.copy(description = description)
     }
 }
 
