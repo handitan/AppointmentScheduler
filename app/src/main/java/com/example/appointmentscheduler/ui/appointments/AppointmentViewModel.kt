@@ -15,12 +15,33 @@ class AppointmentViewModel(application: AppointmentApplication): ViewModel() {
         application.apptRepo
     }
 
+    //TODO HANDI
+    var tempAppt:Appointment = Appointment(date = "", time = "", location = "", description = "")
+        private set
+
     val apptList = apptRepo.getAppointmentsFromRoom()
+
+    fun getAppointment(id:Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            tempAppt = apptRepo.getAppointmentFromRoom(id)
+        }
+    }
+
+    fun updateAppointment(appt:Appointment) {
+        viewModelScope.launch(Dispatchers.IO) {
+            apptRepo.updateAppointmentFromRoom(appt)
+        }
+    }
 
     fun deleteAppointment(appt: Appointment) {
         viewModelScope.launch(Dispatchers.IO) {
             apptRepo.deleteAppointmentFromRoom(appt)
         }
+    }
+
+    //TODO HANDI
+    fun updateDescription(description:String) {
+        tempAppt = tempAppt?.copy(description = description)
     }
 }
 

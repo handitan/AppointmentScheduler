@@ -10,5 +10,8 @@ class Constants {
         const val UPDATE_APPOINTMENT_SCREEN = "Update appointment"
 
         const val DELETE_APPOINTMENT = "Delete an appointment."
+        const val EDIT_APPOINTMENT = "Update an appointment."
+
+        const val UPDATE = "Update"
     }
 }

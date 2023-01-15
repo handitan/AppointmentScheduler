@@ -13,7 +13,8 @@ import com.example.appointmentscheduler.ui.appointments.components.AppointmentCa
 
 @Composable
 fun AppointmentScreen(
-    apptViewModel: AppointmentViewModel
+    apptViewModel: AppointmentViewModel,
+    navigateToUpdateBookScreen: (apptId: Int) -> Unit
 ) {
     val appointmentList by apptViewModel.apptList.collectAsState(
         initial = emptyList()
@@ -23,7 +24,10 @@ fun AppointmentScreen(
         .fillMaxSize()
         .padding(10.dp)){
         items(appointmentList, key = { appt -> appt.id}) {
-            AppointmentCard(appt = it, deleteAppt = {apptViewModel.deleteAppointment(it)})
+            AppointmentCard(appt = it,
+                deleteAppt = { apptViewModel.deleteAppointment(it) },
+                updateAppt = {navigateToUpdateBookScreen(it.id)}
+            )
         }
     }
 }

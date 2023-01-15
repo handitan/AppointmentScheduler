@@ -9,7 +9,7 @@ import com.example.appointmentscheduler.data.model.Appointment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = [Appointment::class], version = 1)
+@Database(entities = [Appointment::class], version = 2)
 abstract class AppointmentDb: RoomDatabase() {
     abstract fun appointmentDao(): AppointmentDao
 
@@ -27,9 +27,9 @@ abstract class AppointmentDb: RoomDatabase() {
                     apptDao.deleteAllAppointment()
 
                     // Add sample appts.
-                    var apptObj = Appointment(date="01/02/2023",time="09:00", description = "Description111")
+                    var apptObj = Appointment(date="01/02/2023",time="09:00", location = "Chicago", description = "Description111Description111Description111Description111Description111Description111Description111Description111Description111Description111Description111Description111Description111Description111Description111Description111Description111Description111Description111")
                     apptDao.addAppointment(apptObj)
-                    apptObj = Appointment(date="02/20/2023",time="08:00",description = "Description222")
+                    apptObj = Appointment(date="02/20/2023",time="08:00",location = "San Diego", description = "Description222Description222Description222Description222Description222Description222Description222Description222Description222Description222Description222")
                     apptDao.addAppointment(apptObj)
                 }
             }
@@ -55,7 +55,9 @@ abstract class AppointmentDb: RoomDatabase() {
                 context,
                 AppointmentDb::class.java,
                 DB_NAME
-            ).addCallback(AppointmentDbCallback(scope)).build()
+            ).fallbackToDestructiveMigration()
+                .addCallback(AppointmentDbCallback(scope))
+                .build()
         }
     }
 }

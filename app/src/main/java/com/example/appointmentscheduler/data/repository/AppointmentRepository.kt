@@ -7,6 +7,8 @@ class AppointmentRepository(
     private val appointmentDao: AppointmentDao
 ) {
     fun getAppointmentsFromRoom() = appointmentDao.getAppointments()
+    fun getAppointmentFromRoom(id:Int) = appointmentDao.getAppointment(id)
+    fun updateAppointmentFromRoom(appt:Appointment) = appointmentDao.updateAppointment(appt)
     fun deleteAppointmentFromRoom(appt: Appointment) = appointmentDao.deleteAppointment(appt)
     //TODO HANDI
 }

@@ -13,7 +13,8 @@ import com.example.appointmentscheduler.data.model.Appointment
 @Composable
 fun AppointmentCard(
     appt:Appointment,
-    deleteAppt: () -> Unit
+    deleteAppt: () -> Unit,
+    updateAppt: () -> Unit
 ) {
     Card(modifier = Modifier
         .fillMaxWidth()
@@ -29,14 +30,35 @@ fun AppointmentCard(
             //verticalAlignment = Alignment.CenterVertically,
         ) {
 
-            Row {
-                Text(text = "${appt.date} ${appt.time}")
-                Spacer(modifier = Modifier.weight(1.0F,true))
-                DeleteApptIcon(
-                    deleteAppt = deleteAppt
+            //TODO HANDI overflow
+            /*
+            Text(
+                    text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis
                 )
+             */
+            Column {
+                //Column {
+                Text(text = "${appt.date} ${appt.time}")
+                Text(text = "${appt.location}")
+                Text(
+                    text = "${appt.description}",
+                    maxLines = 2
+                )
+                //}
+                //Spacer(modifier = Modifier.weight(1.0F,true))
+                Row {
+                    Spacer(modifier = Modifier.weight(1.0F,true))
+                    EditApptIcon(
+                        editAppt = updateAppt
+                    )
+                    Spacer(modifier = Modifier.weight(0.1F))
+                    DeleteApptIcon(
+                        deleteAppt = deleteAppt
+                    )
+                }
             }
-
         }
     }
 }

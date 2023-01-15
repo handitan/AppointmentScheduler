@@ -10,6 +10,9 @@ interface AppointmentDao {
     @Query("SELECT * FROM $APPOINTMENT_TABLE")
     fun getAppointments(): Flow<List<Appointment>>
 
+    @Query("SELECT * FROM $APPOINTMENT_TABLE WHERE id = :id")
+    fun getAppointment(id:Int):Appointment
+
     //TODO HANDI ignoreConflict?
     @Insert
     fun addAppointment(appointment:Appointment)

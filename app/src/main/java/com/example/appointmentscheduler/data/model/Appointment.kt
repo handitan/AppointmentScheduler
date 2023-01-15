@@ -10,5 +10,6 @@ data class Appointment(
     val id: Int = 0,
     val date: String,
     val time: String,
+    val location:String,
     val description: String
 )
