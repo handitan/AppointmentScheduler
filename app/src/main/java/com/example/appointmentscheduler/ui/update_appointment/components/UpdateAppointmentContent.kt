@@ -18,6 +18,9 @@ import com.example.appointmentscheduler.data.model.Appointment
 fun UpdateAppointmentContent(
     appt: Appointment,
     updateAppt: (appt:Appointment) -> Unit,
+    updateDate: (date:String) -> Unit,
+    updateTime: (time:String) -> Unit,
+    updateLoc: (loc:String) -> Unit,
     updateDesc: (desc:String) -> Unit,
     navigateBack: () -> Unit
 ) {
@@ -26,9 +29,29 @@ fun UpdateAppointmentContent(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        //TODO HANDI
         TextField(
             modifier = Modifier.background(Color.White),
+            value = appt.date,
+            onValueChange = {
+                    date -> updateDate(date)
+            }
+        )
+        TextField(
+            modifier = Modifier.background(Color.White),
+            value = appt.time,
+            onValueChange = {
+                    time -> updateTime(time)
+            }
+        )
+        TextField(
+            modifier = Modifier.background(Color.White),
+            value = appt.location,
+            onValueChange = {
+                    loc -> updateLoc(loc)
+            }
+        )
+        TextField(
+            modifier = Modifier.background(Color.White).weight(1.0f),
             value = appt.description,
             onValueChange = {
                 description -> updateDesc(description)

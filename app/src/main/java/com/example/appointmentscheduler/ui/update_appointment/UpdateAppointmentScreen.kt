@@ -12,7 +12,6 @@ fun UpdateAppointmentScreen(
     apptId:Int,
     navigateBack: () -> Unit
 ) {
-    //TODO HANDI
     LaunchedEffect(Unit) {
         apptViewModel.getAppointment(apptId)
     }
@@ -23,9 +22,20 @@ fun UpdateAppointmentScreen(
                 appt = apptViewModel.appt,
                 updateAppt = { appt ->
                     apptViewModel.updateAppointment(appt)
-                }, updateDesc = { desc ->
+                },
+                updateDate = { date ->
+                    apptViewModel.updateDate(date)
+                },
+                updateTime = { time ->
+                    apptViewModel.updateTime(time)
+                },
+                updateLoc = { loc ->
+                     apptViewModel.updateLocation(loc)
+                },
+                updateDesc = { desc ->
                     apptViewModel.updateDescription(desc)
-                }, navigateBack = navigateBack
+                },
+                navigateBack = navigateBack
             )
         }
     )

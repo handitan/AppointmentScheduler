@@ -41,7 +41,18 @@ class AppointmentViewModel(application: AppointmentApplication): ViewModel() {
         }
     }
 
-    //TODO HANDI
+    fun updateDate(date:String) {
+        appt = appt?.copy(date = date)
+    }
+
+    fun updateTime(time:String) {
+        appt = appt?.copy(time = time)
+    }
+
+    fun updateLocation(location:String) {
+        appt = appt?.copy(location = location)
+    }
+
     fun updateDescription(description:String) {
         appt = appt?.copy(description = description)
     }
