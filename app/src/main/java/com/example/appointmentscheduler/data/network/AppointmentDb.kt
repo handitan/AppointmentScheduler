@@ -12,8 +12,7 @@ import kotlinx.coroutines.launch
 @Database(entities = [Appointment::class], version = 2)
 abstract class AppointmentDb: RoomDatabase() {
     abstract fun appointmentDao(): AppointmentDao
-
-    //TODO HANDI - remove later tests for testing
+    
     private class AppointmentDbCallback(
         private val scope: CoroutineScope
     ) : RoomDatabase.Callback() {
