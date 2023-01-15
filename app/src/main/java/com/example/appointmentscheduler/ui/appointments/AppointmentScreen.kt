@@ -26,8 +26,8 @@ import com.example.appointmentscheduler.ui.appointments.components.AppointmentCa
 @Composable
 fun AppointmentScreen(
     apptViewModel: AppointmentViewModel,
-    navigateToAddBookScreen: () -> Unit,
-    navigateToUpdateBookScreen: (apptId: Int) -> Unit
+    navigateToAddAppointmentScreen: () -> Unit,
+    navigateToUpdateAppointmentScreen: (apptId: Int) -> Unit
 ) {
     val appointmentList by apptViewModel.apptList.collectAsState(
         initial = emptyList()
@@ -43,7 +43,7 @@ fun AppointmentScreen(
             }
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = { navigateToAddBookScreen()}) {
+            FloatingActionButton(onClick = { navigateToAddAppointmentScreen()}) {
                 Icon(Icons.Rounded.Add, contentDescription = Constants.ADD)
             }
         }
@@ -54,7 +54,7 @@ fun AppointmentScreen(
             items(appointmentList, key = { appt -> appt.id}) {
                 AppointmentCard(appt = it,
                     deleteAppt = { apptViewModel.deleteAppointment(it) },
-                    updateAppt = { navigateToUpdateBookScreen(it.id) }
+                    updateAppt = { navigateToUpdateAppointmentScreen(it.id) }
                 )
             }
         }

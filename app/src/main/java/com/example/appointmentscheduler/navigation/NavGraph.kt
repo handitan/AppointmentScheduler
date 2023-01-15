@@ -24,10 +24,10 @@ fun NavGraph(
         composable(route = AppointmentScreen.route) {
             AppointmentScreen(
                 apptViewModel = apptViewModel,
-                navigateToAddBookScreen = {
+                navigateToAddAppointmentScreen = {
                     navController.navigate(AddAppointmentScreen.route)
                 },
-                navigateToUpdateBookScreen = { apptId ->
+                navigateToUpdateAppointmentScreen = { apptId ->
                     navController.navigate(UpdateAppointmentScreen.route + "/$apptId")
             })
         }
